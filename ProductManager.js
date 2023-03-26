@@ -6,6 +6,8 @@ class ProductManager {
     }
     addProduct(title,price,thumbnail,code,stock){
         ProductManager.autoid++;
+        let campo = true;
+        let codeControl = true;
         const newProduct ={
             title: title,
             price: price,
@@ -14,7 +16,14 @@ class ProductManager {
             stock: stock,
             id: ProductManager.autoid
         }
-        this.products.push(newProduct);
+        newProduct.title == "" ? campo = false : "";
+        newProduct.price == "" ? campo = false : "";
+        newProduct.thumbnail == "" ? campo = false : "";
+        newProduct.code == "" ? campo = false : "";
+        newProduct.stock == "" ? campo = false : "";
+        this.products.find(e=> e.code === code) ? codeControl = false : "";
+        campo && codeControl? this.products.push(newProduct) : console.log("Campos incompletos y/o código ingresado ya existe en el listado");
+    
     }
     getProducts(){
         this.products.forEach(product=>
@@ -28,7 +37,9 @@ class ProductManager {
     
     }
    
-let producto = new ProductManager();
+const producto = new ProductManager();
 producto.addProduct("anzuelo",50,"sin imagen","a14b", 100);
+producto.addProduct("tanza", 100, "sin imagen", "b25c", 100);
+producto.addProduct("plomada", 150, "sin imagen", "c36d", 100);
 producto.getProducts();
-producto.getProductsById(1);
+producto.getProductsById(2);
