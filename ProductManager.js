@@ -1,10 +1,12 @@
+const fs = require('fs');
 class ProductManager {
    static autoid = 0;
 
     constructor(){
-        this.products=[];        
+        this.products=[];
+        this.path = "./products.JSON";        
     }
-    addProduct(title,price,thumbnail,code,stock){
+    addProduct(title,price,thumbnail,description,code,stock){
         ProductManager.autoid++;
         let campo = true;
         let codeControl = true;
@@ -12,6 +14,7 @@ class ProductManager {
             title: title,
             price: price,
             thumbnail: thumbnail,
+            description: description,
             code: code,
             stock: stock,
             id: ProductManager.autoid
@@ -34,7 +37,13 @@ class ProductManager {
         let product = this.products.find(e=> e.id == id)
         product ? console.log("Nombre: "+ product.title + "\nPrecio: "+product.price+"\nImagen: "+product.thumbnail+"\nCode: "+product.code+"\nID: "+product.id) : console.log("Not found")
     }
-    
+    updateProduct(){
+
+    }
+    deleteProduct(){
+
+    }
+
     }
    
 const producto = new ProductManager();
