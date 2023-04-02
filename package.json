@@ -1,7 +1,6 @@
 {
   "name": "product-manager",
   "version": "1.0.0",
-  "description": "",
   "main": "ProductManager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/marianoaleg/Product-Manager/issues"
   },
-  "homepage": "https://github.com/marianoaleg/Product-Manager#readme"
+  "homepage": "https://github.com/marianoaleg/Product-Manager#readme",
+  "dependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "devDependencies": {},
+  "description": ""
 }

@@ -1,15 +1,14 @@
 const fs = require('fs');
+
 class ProductManager {
-   static autoid = 0;
+   static autoid = 0; 
 
     constructor(){
         this.products=[];
         this.path = "./products.JSON";        
     }
-    addProduct(title,price,thumbnail,description,code,stock){
+   addProduct = (title,price,thumbnail,description,code,stock)=>{
         ProductManager.autoid++;
-        let campo = true;
-        let codeControl = true;
         const newProduct ={
             title: title,
             price: price,
@@ -19,24 +18,22 @@ class ProductManager {
             stock: stock,
             id: ProductManager.autoid
         }
-        newProduct.title == "" ? campo = false : "";
-        newProduct.price == "" ? campo = false : "";
-        newProduct.thumbnail == "" ? campo = false : "";
-        newProduct.code == "" ? campo = false : "";
-        newProduct.stock == "" ? campo = false : "";
-        this.products.find(e=> e.code === code) ? codeControl = false : "";
-        campo && codeControl? this.products.push(newProduct) : console.log("Campos incompletos y/o código ingresado ya existe en el listado");
-    
+        const controlManager = this.products.some(e=> e.code === code);
+        controlManager ? console.log("El producto ya existe") :(title || description || price || thumbnail || code || stock) ?this.products.push(newProduct):console.log("Campos incompletos");
+         fs.writeFileSync(this.path, JSON.stringify(this.products));
+        console.log("Producto cargado a la base");
     }
-    getProducts(){
-        this.products.forEach(product=>
-
-            console.log("Nombre: "+ product.title + "\nPrecio: "+product.price+"\nImagen: "+product.thumbnail+"\nCode: "+product.code+"\nID: "+product.id)
-        )}
-    getProductsById(id){
-        let product = this.products.find(e=> e.id == id)
-        product ? console.log("Nombre: "+ product.title + "\nPrecio: "+product.price+"\nImagen: "+product.thumbnail+"\nCode: "+product.code+"\nID: "+product.id) : console.log("Not found")
+     getProducts = async()=>{
+        const productsJSON = await fs.promises.readFile(this.path, 'utf-8');
+        const products = JSON.parse(productsJSON);
+        products.forEach(element => { console.log(element)
+        });
     }
+     getProductsById = async(id)=>{
+        const productsJSON = await fs.promises.readFile(this.path, 'utf-8');
+        const products = JSON.parse(productsJSON);
+        let product = products.find(e=> e.id == id)
+        product ? console.log(product) : console.log("El producto no existe");}
     updateProduct(){
 
     }
@@ -47,8 +44,9 @@ class ProductManager {
     }
    
 const producto = new ProductManager();
-producto.addProduct("anzuelo",50,"sin imagen","a14b", 100);
-producto.addProduct("tanza", 100, "sin imagen", "b25c", 100);
-producto.addProduct("plomada", 150, "sin imagen", "c36d", 100);
-producto.getProducts();
+
+producto.addProduct("anzuelo",50,"sin imagen","","a14b", 100);
+producto.addProduct("tanza", 100, "sin imagen","", "b25c", 100);
+producto.addProduct("plomada", 150, "sin imagen","", "c36d", 100);
 producto.getProductsById(2);
+producto.getProducts();
