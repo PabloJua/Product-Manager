@@ -23,19 +23,32 @@ class ProductManager {
          fs.writeFileSync(this.path, JSON.stringify(this.products));
         console.log("Producto cargado a la base");
     }
-     getProducts = async()=>{
-        const productsJSON = await fs.promises.readFile(this.path, 'utf-8');
+     getProducts = ()=>{
+        const productsJSON =  fs.readFileSync(this.path, 'utf-8');
         const products = JSON.parse(productsJSON);
+        products.lenght == 0 ? console.log("No hay productos") :
         products.forEach(element => { console.log(element)
         });
     }
-     getProductsById = async(id)=>{
-        const productsJSON = await fs.promises.readFile(this.path, 'utf-8');
+     getProductsById = (id)=>{
+        const productsJSON =  fs.readFileSync(this.path, 'utf-8');
         const products = JSON.parse(productsJSON);
         let product = products.find(e=> e.id == id)
         product ? console.log(product) : console.log("El producto no existe");}
-    updateProduct(){
-
+    updateProduct(id,title,price,thumbnail,description,code,stock){
+        const productsJSON =  fs.readFileSync(this.path, 'utf-8');
+        const products = JSON.parse(productsJSON);
+        let productID = products.findIndex(e=> e.id == id);
+        productID == -1 ? console.log("El ID ingresado no existe") :(title || description || price || thumbnail || code || stock) ? update = ()=>{
+        products[productID].title = title;
+        products[productID].price= price;
+        products[productID].thumbnail = thumbnail;
+        products[productID].description= description;
+        products[productID].code = code;
+        products[productID].stock = stock;} : console.log ("Campos incompletos");
+        fs.writeFileSync(this.path, JSON.stringify(this.products), (error)=>{
+            if (error) return console.log ("Error al modificar producto")
+        });
     }
     deleteProduct(){
 
