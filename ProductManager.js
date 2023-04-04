@@ -48,7 +48,7 @@ class ProductManager {
         products[productID].description= description;
         products[productID].code = code;
         products[productID].stock = stock;} : console.log ("Campos incompletos");
-        fs.writeFileSync(this.path, JSON.stringify(this.products), (error)=>{
+        fs.writeFileSync(this.path, JSON.stringify(products), (error)=>{
             if (error) return console.log ("Error al modificar producto")
         });
     }
