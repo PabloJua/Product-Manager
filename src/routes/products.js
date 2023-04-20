@@ -23,7 +23,7 @@ const router = Router();
       let description = req.body.description;
       let code = req.body.code;
       let stock = req.body.stock;
-      let category = req.body.stock;
+      let category = req.body.category;
       
       cargaProducto.addProduct(title,price,status,thumbnails,description,code,stock,category);
       res.send({estado:'ok' , mensaje: 'Producto agregado'});

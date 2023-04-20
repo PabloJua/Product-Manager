@@ -1,0 +1,10 @@
+[{"title":"anzuelo","price":50,"status":"true","thumbnail":"sin imagen","description":"","code":"a14b","stock":100,"category":"anzuelo","id":1},
+{"title":"tanza","price":100,"status":"true","thumbnail":"sin imagen","description":"","code":"b25c","stock":100,"category":"tanzas","id":2},
+{"title":"plomada","price":150,"status":"true","thumbnail":"sin imagen","description":"","code":"c36d","stock":100,"category":"plomadas","id":3},
+{"title":"boya","price":200,"status":"true","thumbnail":"sin imagen","description":"","code":"p345","stock":100,"category":"boyas","id":4},
+{"title":"mosqueton","price":145,"status":"true","thumbnail":"sin imagen","description":"","code":"p579","stock":100,"category":"mosquetones","id":5},
+{"title":"Lider de acero","price":400,"status":"true","thumbnail":"sin imagen","description":"","code":"6as5da","stock":100,"category":"lineas","id":6},
+{"title":"Cuchara ondulante","price":600,"status":"true","thumbnail":"sin imagen","description":"","code":"gr6w","stock":100,"category":"señuelos","id":7},
+{"title":"Multifilamento","price":3000,"status":"true","thumbnail":"sin imagen","description":"","code":"t6yr5","stock":100,"category":"tanzas","id":8},
+{"title":"Capuchon plastico","price":1200,"status":"true","thumbnail":"sin imagen","description":"","code":"b6n5","stock":100,"category":"articulos varios","id":9},
+{"title":"Gas Butano","price":1000,"status":"true","thumbnail":"sin imagen","description":"","code":"ah65","stock":100,"category":"camping","id":10}]

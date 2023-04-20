@@ -1,13 +1,14 @@
 
 import express from 'express';
 import products from './routes/products.js';
-
+import carts from './routes/carts.js';
 const app = express();
 const puerto = 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
  app.use('/api', products);
+ app.use('/api', carts);
 
 /*app.get('/products', (req, res)=>{
  const productos = cargaProducto.getProducts();

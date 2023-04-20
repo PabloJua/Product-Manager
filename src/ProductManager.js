@@ -7,8 +7,8 @@ export class ProductManager {
         this.products=[];
         this.path = "../products.JSON";        
     }
-   addProduct = (title,price,status,thumbnails,description,code,stock,category)=>{
-        const newProduct ={
+   addProduct = (title,price,status,thumbnails,description,code,stock,category)=>{   
+             const newProduct ={
             title: title,
             price: price,
             status : status, 
@@ -16,21 +16,24 @@ export class ProductManager {
             description: description, 
             code: code,
             stock: stock,
-            category: category,         
+            category: category, 
+            id: 0     
         } 
         if(fs.existsSync(this.path)){
             const productsJSON =  fs.readFileSync(this.path, 'utf-8');
             let products = JSON.parse(productsJSON); 
-            let autoID = products.length + 1;
+            let autoID = {id: products.length + 1};
+            let productoComplete = Object.assign(newProduct , autoID);
             const controlManager = products.some(e=> e.code === code);
-        controlManager ? console.log("El producto ya existe") :(title || description || price || thumbnails || code || stock || category ) ? products.push(newProduct,{autoID}):console.log("Campos incompletos");
+        controlManager ? console.log("El producto ya existe") :(title || description || price || thumbnails || code || stock || category ) ? products.push(productoComplete):console.log("Campos incompletos");
          fs.writeFileSync(this.path, JSON.stringify(products));
         console.log("Producto cargado a la base");
         } else  
         {
-        let autoID = products.length + 1;
+            let autoID = {id: products.length + 1};
+        let productoComplete = Object.assign(newProduct , autoID);
         const controlManager = this.products.some(e=> e.code === code);
-        controlManager ? console.log("El producto ya existe") :(title || description || price || thumbnails || code || stock || category ) ?this.products.push(newProduct,{autoID}):console.log("Campos incompletos");
+        controlManager ? console.log("El producto ya existe") :(title || description || price || thumbnails || code || stock || category ) ?this.products.push(productoComplete):console.log("Campos incompletos");
          fs.writeFileSync(this.path, JSON.stringify(this.products));
         console.log("Producto cargado a la base");}
     }

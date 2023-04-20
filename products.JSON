@@ -1,1 +1,5 @@
-[{"title":"Mustad","price":100,"status":true,"description":"","code":"fas4523","stock":100,"category":100,"id":1},{"title":"Mustad","price":100,"status":true,"description":"","code":"fas4553","stock":100,"category":100,"id":2},{"title":"Mustad","price":100,"status":true,"description":"","code":"fas4543","stock":100,"category":100,"id":3},{"title":"Mustad","price":100,"status":true,"description":"","code":"fas46563","stock":100,"category":100},{"autoID":5},{"title":"Mustad","price":100,"status":true,"description":"","code":"fas46593","stock":100,"category":100},{"autoID":6}]
+[{"title":"anzuelo","price":50,"status":"true","thumbnail":"sin imagen","description":"","code":"a14b","stock":100,"category":"anzuelo","id":1},
+{"title":"tanza","price":100,"status":"true","thumbnail":"sin imagen","description":"","code":"b25c","stock":100,"category":"tanzas","id":2},
+{"title":"plomada","price":150,"status":"true","thumbnail":"sin imagen","description":"","code":"c36d","stock":100,"category":"plomadas","id":3},
+{"title":"boya","price":200,"status":"true","thumbnail":"sin imagen","description":"","code":"p345","stock":100,"category":"boyas","id":4},
+{"title":"mosqueton","price":145,"status":"true","thumbnail":"sin imagen","description":"","code":"p579","stock":100,"category":"mosquetones","id":5}]
