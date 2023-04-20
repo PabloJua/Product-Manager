@@ -1,27 +1,38 @@
-const fs = require('fs');
+import fs from 'fs';
 
-class ProductManager {
-   static autoid = 0; 
+export class ProductManager {
+    
 
     constructor(){
         this.products=[];
         this.path = "../products.JSON";        
     }
-   addProduct = (title,price,thumbnail,description,code,stock)=>{
-        ProductManager.autoid++;
+   addProduct = (title,price,status,thumbnails,description,code,stock,category)=>{
         const newProduct ={
             title: title,
             price: price,
-            thumbnail: thumbnail,
+            status : status, 
+            thumbnail: thumbnails,
             description: description, 
             code: code,
             stock: stock,
-            id: ProductManager.autoid
-        }        
-        const controlManager = this.products.some(e=> e.code === code);
-        controlManager ? console.log("El producto ya existe") :(title || description || price || thumbnail || code || stock) ?this.products.push(newProduct):console.log("Campos incompletos");
-         fs.writeFileSync(this.path, JSON.stringify(this.products));
+            category: category,         
+        } 
+        if(fs.existsSync(this.path)){
+            const productsJSON =  fs.readFileSync(this.path, 'utf-8');
+            let products = JSON.parse(productsJSON); 
+            let autoID = products.length + 1;
+            const controlManager = products.some(e=> e.code === code);
+        controlManager ? console.log("El producto ya existe") :(title || description || price || thumbnails || code || stock || category ) ? products.push(newProduct,{autoID}):console.log("Campos incompletos");
+         fs.writeFileSync(this.path, JSON.stringify(products));
         console.log("Producto cargado a la base");
+        } else  
+        {
+        let autoID = products.length + 1;
+        const controlManager = this.products.some(e=> e.code === code);
+        controlManager ? console.log("El producto ya existe") :(title || description || price || thumbnails || code || stock || category ) ?this.products.push(newProduct,{autoID}):console.log("Campos incompletos");
+         fs.writeFileSync(this.path, JSON.stringify(this.products));
+        console.log("Producto cargado a la base");}
     }
      getProducts = ()=>{
         const productsJSON =  fs.readFileSync(this.path, 'utf-8');
@@ -63,7 +74,7 @@ class ProductManager {
     }
 
     }
-   exports.ProductManager = ProductManager;
+
 //const producto = new ProductManager();
 
 //producto.addProduct("anzuelo",50,"sin imagen","","a14b", 100);
