@@ -29,9 +29,17 @@ const router = Router();
       res.send({estado:'ok' , mensaje: 'Producto agregado'});
     })
 
-    router.post('/Products/:pid', (req , res)=>{
+    router.put('/Products/:pid', (req , res)=>{
       let id = parseInt(req.params.pid);
-      cargaProducto.updateProduct(id)
+      let title = req.body.title;
+      let price = req.body.price;
+      const status = true;
+      let thumbnails = req.body.thumbnails;
+      let description = req.body.description;
+      let code = req.body.code;
+      let stock = req.body.stock;
+      let category = req.body.category;
+      cargaProducto.updateProduct(id,title,price,status,thumbnails,description,code,stock,category);
       res.send({estado:'ok', mensaje:'Producto modificado'})
     })
     router.delete('/Products/:pid',(req, res)=>{

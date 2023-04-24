@@ -50,17 +50,21 @@ export class ProductManager {
         if(product) return product; return console.log("El producto no existe");
     }
     
-     updateProduct(id,title,price,thumbnail,description,code,stock){
+     updateProduct(id,title,price,status,thumbnails,description,code,stock,category){
         const productsJSON =  fs.readFileSync(this.path, 'utf-8');
         const products = JSON.parse(productsJSON);
         let productID = products.findIndex(e=> e.id == id);
-        productID == -1 ? console.log("El ID ingresado no existe") :(title || description || price || thumbnail || code || stock) ? update = ()=>{
+        if (productID == -1) {console.log("El ID ingresado no existe")} 
+         else{ if (title || description || price || thumbnails || code || stock)  {
         products[productID].title = title;
         products[productID].price= price;
-        products[productID].thumbnail = thumbnail;
+        products[productID].thumbnails = thumbnails;
         products[productID].description= description;
         products[productID].code = code;
-        products[productID].stock = stock;} : console.log ("Campos incompletos");
+        products[productID].category= category;
+        products[productID].status = status;
+        products[productID].stock = stock;}  }  { console.log ("Campos incompletos");}
+        
         fs.writeFileSync(this.path, JSON.stringify(products), (error)=>{
             if (error) return console.log ("Error al modificar producto")
         });

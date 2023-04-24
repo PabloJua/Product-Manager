@@ -24,25 +24,24 @@ export class CartManager{
         getCart = (id)=>{
             const cartsJSON =  fs.readFileSync(this.path, 'utf-8');
             const carts = JSON.parse(cartsJSON);
-            let cart = carts.find(e=> e.autoID == id)
+            let cart = carts.find(e=> e.id == id)
             if(cart) return cart.products; return ({mensaje: "El cart no existe"});
         }
-        postCart = (cid , pid, product)=>{
+        postCart = (cid , product)=>{
             const cartsJSON =  fs.readFileSync(this.path, 'utf-8');
             const carts = JSON.parse(cartsJSON);
-            let productosEnCart = carts[cid];
-            let products = productosEnCart.products;
-            let verificador = products.find(e => e.id == pid );
-            if(verificador){
-               let autoQuantity = {quantity: verificador.quantity + 1}
-               let producto = Object.assign(verificador , autoQuantity);             
-            fs.writeFileSync(this.path, JSON.stringify(carts));
+            let productoOriginal = product;
+            let indexCart = carts.findIndex(e=> e.id == cid);
+            let arrayProducts= carts[indexCart].products;
+            let buscarExistente = arrayProducts.find(e=>e.id == productoOriginal.id);
+            if(buscarExistente){
+                buscarExistente.quantity++;
             }
             else{
-            let producto = {id:product.id, quantity: 1};
-            products.push(producto);
+            carts[indexCart].products.push({id:product.id, quantity:1});}
+
             fs.writeFileSync(this.path, JSON.stringify(carts));
-            }
+           
             
         }
 }
